@@ -8,7 +8,7 @@ The theme initially applied was [Groovecoder's Mozilla Sandstone theme for deck.
 
 In case you are cloning this repo and not the original deck.js:
 
-1. Do something. TODO
+1. Edit `index.jade` and slides in `slides/`, run `jade --watch --pretty index.jade`.
 
 ## Browser Compatibility
 

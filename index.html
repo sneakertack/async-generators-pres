@@ -11,6 +11,7 @@
     <link rel="stylesheet" media="screen" href="extensions/navigation/deck.navigation.css">
     <link rel="stylesheet" media="screen" href="extensions/status/deck.status.css">
     <link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">
+    <link rel="stylesheet" media="screen" href="themes/style/normalize.css">
     <link rel="stylesheet" media="screen" href="themes/style/sandstone.dark.css">
     <link rel="stylesheet" media="screen" href="themes/style/snkt.css">
     <link rel="stylesheet" media="screen" href="themes/transition/vertical-slide.css">
@@ -20,20 +21,34 @@
   <body>
     <div class="deck-container">
       <section class="slide text-center">
-        <h1 class="title">Asynchronous Flow Control with<br/>ES6&nbsp;Generators</h1>
+        <h1 style="line-height: 1;" class="title">Asynchronous Flow Control with<br/>ES6&nbsp;Generators</h1>
         <p class="subtitle no-spacer">Melvin Tiong</p>
         <p style="font-size: 2rem;" class="subtitle no-top-spacer">Oct 2014</p>
+        <p style="font-size: 2rem; color: rgba(255,255,255,0.3);" class="subtitle">PgUp / PgDn to navigate</p>
       </section>
       <section class="slide">
-        <h1>hello world</h1>
-      </section>
-      <section class="slide">
-        <h2>a slide</h2>
+        <h1>How to pair with generators</h1>
         <ul>
-          <li class="slide">Something</li>
-          <li class="slide">Something</li>
-          <li class="slide">I</li>
-          <li class="slide">Suppose</li>
+          <li>co</li>
+          <li>suspend</li>
+          <li>js-csp</li>
+          <li>This gist</li>
+          <li>Roll your own</li>
+        </ul>
+      </section>
+      <section class="slide">
+        <h1>Is this available? <small style="font-size: 2rem;">(as of 8 Oct 2014)</small></h1>
+        <ul>
+          <li><strong>Node:</strong> In Node <strong>v0.11+</strong>, run <pre class="inline">node --harmony-generators</pre> (or <pre class="inline">node --harmony</pre> )</li>
+          <li>Something</li>
+        </ul>
+      </section>
+      <section class="slide">
+        <h1>Further Reading</h1>
+        <ul>
+          <li><a href="http://jlongster.com/A-Study-on-Solving-Callbacks-with-JavaScript-Generators">A Study on Solving Callbacks with JavaScript Generators</a> <small>James Long</small></li>
+          <li><a href="http://jlongster.com/Taming-the-Asynchronous-Beast-with-CSP-in-JavaScript">Taming the Asynchronous Beast with CSP in JavaScript</a> <small>James Long</small></li>
+          <li><a href="https://medium.com/code-adventures/callbacks-vs-coroutines-174f1fe66127">Callbacks vs Coroutines</a> <small>TJ Holowaychuk</small></li>
         </ul>
       </section>
     </div>

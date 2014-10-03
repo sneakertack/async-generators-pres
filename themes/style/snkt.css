@@ -30,6 +30,8 @@
 
 .full-height {height: 100%;}
 
+.inline {display: inline;}
+
 .no-top-spacer {margin-top: 0;}
 .half-top-spacer {margin-top: 10px;}
 .top-spacer {margin-top: 20px;}
@@ -42,10 +44,18 @@
 .text-center {text-align: center;}
 .text-right {text-align: right;}
 
-.strong {font-weight: bold;}
+strong, .strong {font-weight: bold; color: white;}
+
+small {font-size: 60%;}
 
 textarea {
   resize: vertical;
+}
+
+html {
+  color: #222;
+  font-size: 1em;
+  line-height: 1.4;
 }
 
 /* NOTE: Deleted background code from original sandstone.dark.css as well. */
@@ -53,7 +63,7 @@ textarea {
   font-family: "Yanone Kaffeesatz", sans-serif;
   background: url(imgs/grain.png), radial-gradient(ellipse at bottom, rgb(33, 101, 107) 0%, rgb(0,0,0) 100%); /* W3C */
   text-shadow: 0 4px rgba(0,0,0,0.2);
-  font-size: 3rem;
+  font-size: 2.4rem;
   color: rgb(213, 224, 220);
 }
 
@@ -65,3 +75,11 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 6rem;
 }
 
+pre {
+  border-radius: 5px;
+  padding: 5px;
+  background: rgba(0,0,0,0.6);
+  font-size: 2.4rem;
+  font-family: monospace;
+  box-shadow: inset 0 0 10px black, 0 1px rgba(255,255,255,0.2);
+}
