@@ -1,6 +1,67 @@
 /* Additional amendments to be applied on top of Sandstone dark. */
 
+@font-face {
+  font-family: "Yanone Kaffeesatz";
+  src: url("fonts/yanone-kaffeesatz/YanoneKaffeesatz-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Yanone Kaffeesatz";
+  src: url("fonts/yanone-kaffeesatz/YanoneKaffeesatz-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Yanone Kaffeesatz";
+  src: url("fonts/yanone-kaffeesatz/YanoneKaffeesatz-ExtraLight.otf") format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Yanone Kaffeesatz";
+  src: url("fonts/yanone-kaffeesatz/YanoneKaffeesatz-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+.full-height {height: 100%;}
+
+.no-top-spacer {margin-top: 0;}
+.half-top-spacer {margin-top: 10px;}
+.top-spacer {margin-top: 20px;}
+
+.no-spacer {margin-bottom: 0;}
+.half-spacer {margin-bottom: 10px;}
+.spacer {margin-bottom: 20px;}
+
+.text-left {text-align: left;}
+.text-center {text-align: center;}
+.text-right {text-align: right;}
+
+.strong {font-weight: bold;}
+
+textarea {
+  resize: vertical;
+}
+
 /* NOTE: Deleted background code from original sandstone.dark.css as well. */
 .deck-container {
+  font-family: "Yanone Kaffeesatz", sans-serif;
   background: url(imgs/grain.png), radial-gradient(ellipse at bottom, rgb(33, 101, 107) 0%, rgb(0,0,0) 100%); /* W3C */
+  text-shadow: 0 4px rgba(0,0,0,0.2);
+  font-size: 3rem;
+  color: rgb(213, 224, 220);
 }
+
+h1, h2, h3, h4, h5, h6 {
+  color: white;
+}
+
+.title {
+  font-size: 6rem;
+}
+

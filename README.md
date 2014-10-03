@@ -9,3 +9,10 @@ The theme initially applied was [Groovecoder's Mozilla Sandstone theme for deck.
 In case you are cloning this repo and not the original deck.js:
 
 1. Do something. TODO
+
+## Browser Compatibility
+
+Code compatibility has been done only for the presenting machine (modern Chrome) in mind. Pay special attention to the following, if you decide to use any other browser:
+
+- Radial gradients: Did not do vendor-prefix redundancyness.
+- @font-face: Only reads .otf.
