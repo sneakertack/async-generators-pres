@@ -17,11 +17,12 @@ html
     link(rel='stylesheet', media='screen', href='extensions/status/deck.status.css')
     link(rel='stylesheet', media='screen', href='extensions/scale/deck.scale.css')
 
-    //- Style theme. More available in /themes/style/ or create your own. 
+    //- Style theme.
     link(rel='stylesheet', media='screen', href='themes/style/sandstone.dark.css')
+    link(rel='stylesheet', media='screen', href='themes/style/snkt.css')
 
     //- Transition theme. More available in /themes/transition/ or create your own. 
-    link(rel='stylesheet', media='screen', href='themes/transition/horizontal-slide.css')
+    link(rel='stylesheet', media='screen', href='themes/transition/vertical-slide.css')
 
     //- Basic black and white print styles 
     link(rel='stylesheet', media='print', href='core/print.css')
@@ -31,18 +32,19 @@ html
 
   body
     .deck-container
-      //- Begin slides. Just make elements with a class of slide. 
+      //- Begin slides. Just make elements with a class of slide.
+      include slides/title
       include slides/hello
       include slides/two
       //- End slides. 
 
       //- Begin extension snippets. Add or remove as needed. 
       //- deck.navigation snippet 
-      div(aria-role='navigation')
+      //- div(aria-role='navigation')
         a.deck-prev-link(href='#', title='Previous') ←
         a.deck-next-link(href='#', title='Next') →
       //-   deck.status snippet 
-      p.deck-status(aria-role='status')
+      //- p.deck-status(aria-role='status')
         span.deck-status-current
         |  / 
         span.deck-status-total

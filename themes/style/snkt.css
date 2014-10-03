@@ -1,0 +1,6 @@
+/* Additional amendments to be applied on top of Sandstone dark. */
+
+/* NOTE: Deleted background code from original sandstone.dark.css as well. */
+.deck-container {
+  background: url(imgs/grain.png), radial-gradient(ellipse at bottom, rgb(33, 101, 107) 0%, rgb(0,0,0) 100%); /* W3C */
+}

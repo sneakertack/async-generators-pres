@@ -9,17 +9,6 @@
 .deck-container {
   font-family: "Open Sans", sans-serif;
   font-size: 1.75em;
-  background-color: #424f5a;
-  /* fallback color if gradients are not supported */
-  background-image: -webkit-linear-gradient(top, #424f5a, #6a7b86);
-  background-image: -moz-linear-gradient(top, #424f5a, #6a7b86);
-  /* For Fx 3.6 to Fx 15 */
-  background-image: -ms-linear-gradient(top, #424f5a, #6a7b86);
-  /* For IE 10 Platform Previews and Consumer Preview */
-  background-image: -o-linear-gradient(top, #424f5a, #6a7b86);
-  /* For Opera 11.1 to 12.0 */
-  background-image: linear-gradient(to bottom, #424f5a, #6a7b86);
-  /* Standard syntax; must be the last statement */
   color: white;
 }
 .deck-container #tabzilla-panel {
