@@ -21,11 +21,20 @@
   <body>
     <div class="deck-container">
       <section class="slide text-center">
-        <h1 style="line-height: 1;" class="title">Asynchronous Flow Control with<br/>ES6&nbsp;Generators</h1>
+        <h1 style="line-height: 1;" class="title">Asynchronous Control Flow with<br/>ES6&nbsp;Generators</h1>
         <p class="subtitle no-spacer">Melvin Tiong</p>
         <p style="font-size: 2rem;" class="subtitle no-top-spacer">Oct 2014</p>
         <p style="font-size: 2rem; color: rgba(255,255,255,0.3);" class="subtitle">PgUp / PgDn to navigate</p>
       </section>
+      <section class="slide">
+        <h1>Who this presentation is for</h1>
+        <p>This presentation is good for you if</p>
+        <ul>
+          <li>You don't know what a generator or coroutine is</li>
+        </ul>
+      </section>
+      <section class="slide"><img src="imgs/function-flow.png"></section>
+      <section class="slide"><img src="imgs/generator-flow.png"></section>
       <section class="slide">
         <h1>How to pair with generators</h1>
         <ul>
@@ -39,14 +48,24 @@
       <section class="slide">
         <h1>Is this available? <small style="font-size: 2rem;">(as of 8 Oct 2014)</small></h1>
         <ul>
-          <li><strong>Node:</strong> In Node <strong>v0.11+</strong>, run <pre class="inline">node --harmony-generators</pre> (or <pre class="inline">node --harmony</pre> )</li>
-          <li>Something</li>
+          <li>Node:
+            <ul>
+              <li>In <strong>v0.11+</strong>, run <pre class="inline">node --harmony-generators</pre> (or <pre class="inline">node --harmony</pre> )</li>
+            </ul>
+          </li>
+          <li>Browsers:
+            <ul>
+              <li>Firefox: available in FF31+</li>
+              <li>Chrome:</li>
+            </ul>
+          </li>
         </ul>
       </section>
       <section class="slide">
         <h1>Further Reading</h1>
         <ul>
           <li><a href="http://jlongster.com/A-Study-on-Solving-Callbacks-with-JavaScript-Generators">A Study on Solving Callbacks with JavaScript Generators</a> <small>James Long</small></li>
+          <li><a href="http://blog.stevensanderson.com/2013/12/21/experiments-with-koa-and-javascript-generators/">Experiments with Koa and JavaScript Generators</a> <small>Steven Sanderson</small></li>
           <li><a href="http://jlongster.com/Taming-the-Asynchronous-Beast-with-CSP-in-JavaScript">Taming the Asynchronous Beast with CSP in JavaScript</a> <small>James Long</small></li>
           <li><a href="https://medium.com/code-adventures/callbacks-vs-coroutines-174f1fe66127">Callbacks vs Coroutines</a> <small>TJ Holowaychuk</small></li>
         </ul>
