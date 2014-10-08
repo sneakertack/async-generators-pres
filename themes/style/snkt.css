@@ -41,6 +41,9 @@
 .half-spacer {margin-bottom: 10px;}
 .spacer {margin-bottom: 20px;}
 
+.tight {margin-top: 0; margin-bottom: 0;}
+.small {font-size: 60%;}
+
 .text-left {text-align: left;}
 .text-center {text-align: center;}
 .text-right {text-align: right;}
@@ -129,4 +132,8 @@ table.two-col td:last-child {
 /* Nested lists */
 ul > li > ul > li {
   font-size: 80%;
+}
+
+table.dotted td {
+  border: dashed 1px rgba(255,255,255,0.3);
 }

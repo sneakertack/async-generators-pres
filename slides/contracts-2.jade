@@ -1,0 +1,27 @@
+section.slide
+  table.full-width.two-col.text-center.dotted(style="margin-top: 20px;")
+    tbody
+      tr
+        td: h2.tight Consumer
+        td: h2.tight Generator
+      tr
+        td
+          p.tight Some ACF Generator Handler
+          p.tight.small Receive async request<br/>Fire request + ...<br/>Pass async result
+        td
+          p.tight Your app logic
+          p.tight.small Receive async result<br/>Do logic (sync)<br/>Pass asynchronous request
+      tr
+        td
+          p.tight Co's co()
+          p.tight.small Receive thunk<br/>Fire thunk + ...<br/>Pass thunk result
+        td
+          p.tight Your app logic
+          p.tight.small Receive thunk result<br/>Do logic (sync)<br/>Pass thunk
+      tr
+        td
+          p.tight task.js's spawn()
+          p.tight.small Receive promise<br/>Fire promise + ...<br/>Pass promise result
+        td
+          p.tight Your app logic
+          p.tight.small Receive promise result<br/>Do logic (sync)<br/>Pass promise

@@ -76,7 +76,9 @@ co(function *() {
   } catch (e) {
     console.log(e.message);
   }
-})();</code></pre>
+})();
+</code></pre>
+        <p class="text-center"><small>The co library: <a href="https://github.com/visionmedia/co" target="_blank">https://github.com/visionmedia/co</a></small></p>
       </section>
       <section class="slide">
         <h1>The rest of this presentation</h1>
@@ -85,35 +87,45 @@ co(function *() {
             <ul>
               <li>Compared to iterables</li>
               <li>Compared to subroutines and coroutines</li>
-              <li>Toy examples</li>
             </ul>
           </li>
           <li>Conveniently abusing generators for ACF
             <ul>
               <li>Overall strategy</li>
-              <li>Using a library like Co</li>
-              <li>Using our own code</li>
+              <li>Tour of existing ACF gen libraries</li>
+              <li>Building our own library (?)</li>
             </ul>
           </li>
         </ul>
       </section>
       <section class="slide">
-        <h1>Who this presentation is for</h1>
-        <p>This presentation is good for you if</p>
-        <ul>
-          <li>Something something</li>
-          <li>You don't know what a generator or coroutine is</li>
-        </ul>
+        <h1 class="no-top-spacer no-spacer text-center">A generator is a lazy sequence.</h1>
+        <table class="two-col slide">
+          <tr>
+            <td><small>Fibonacci Sequence as array.</small>
+              <pre><code class="language-javascript">var fibonacci = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269, 2178309, 3524578, 5702887, 9227465, 14930352, 24157817, 39088169, 63245986, 102334155, 165580141, 267914296, 433494437, 701408733, 1134903170, 1836311903, 2971215073, 4807526976, 7778742049, 12586269025, 20365011074, 32951280099, 53316291173, 86267571272, 139583862445, 225851433717, 365435296162, 591286729879, 956722026041, 1548008755920, 2504730781961, 4052739537881, 6557470319842, 10610209857723, 17167680177565, 27777890035288, 44945570212853, 72723460248141, 117669030460994, 190392490709135, 308061521170129, 498454011879264, 806515533049393, 1304969544928657, 2111485077978050, 3416454622906707, 5527939700884757, 8944394323791464, 14472334024676220, 23416728348467684, 37889062373143900, 61305790721611580, 99194853094755490, 160500643816367070, ... ];</code></pre>
+            </td>
+            <td><small>Fibonacci Sequence as generator.</small>
+              <pre><code class="language-javascript">var genFunction = function *() {
+  var fn1 = 1;
+  var fn2 = 1;
+  while (true) {
+    var current = fn2;
+    fn2 = fn1;
+    fn1 = fn1 + current;
+    yield current;
+  }
+};
+</code></pre>
+              <pre><code class="language-javascript">var generator = genFunction();
+var array = [];
+for (var i = 0; i < 100; i++) {
+  array.push(generator.next().value);
+}</code></pre>
+            </td>
+          </tr>
+        </table>
       </section>
-      <section class="slide">
-        <h2>A generator is a lazy sequence.</h2>
-      </section>
-      <section class="slide">
-        <h2>A generator is a function with a pause button.</h2>
-        <h2 class="slide">A generator is a function that keeps on giving.</h2>
-      </section>
-      <section class="slide"><img src="imgs/function-flow.png"></section>
-      <section class="slide"><img src="imgs/generator-flow.png"></section>
       <section class="slide">
         <h1 class="spacer no-top-spacer text-center">Toy Example 1</h1>
         <table class="two-col">
@@ -136,11 +148,39 @@ co(function *() {
         <p class="no-spacer no-top-spacer text-center"><small>Protip: You can try this example in your Firefox console.</small></p>
       </section>
       <section class="slide">
+        <h2 class="text-center spacer">A generator is a function that keeps on giving.</h2>
+        <p class="slide text-center no-top-spacer">A generator is a function with a pause button.</p>
+        <table class="slide text-center full-width">
+          <tr>
+            <td width="28%">
+              <h3 class="no-spacer">Subroutines</h3>
+              <p class="no-top-spacer no-spacer"><small>Merely returns</small></p>
+            </td>
+            <td width="8%">
+              <h3 style="font-size: 6rem;" class="no-spacer no-top-spacer"><</h3>
+            </td>
+            <td width="28%">
+              <h3 class="no-spacer">Generators</h3>
+              <p class="no-top-spacer no-spacer"><small>Can yield</small></p>
+            </td>
+            <td width="8%">
+              <h3 style="font-size: 6rem;" class="no-spacer no-top-spacer"><</h3>
+            </td>
+            <td width="28%">
+              <h3 class="no-spacer">Coroutines</h3>
+              <p class="no-top-spacer no-spacer"><small>Can yield better</small></p>
+            </td>
+          </tr>
+        </table>
+      </section>
+      <section class="slide"><img src="imgs/function-flow.png"></section>
+      <section class="slide"><img src="imgs/generator-flow.png"></section>
+      <section class="slide">
         <h1 class="spacer no-top-spacer text-center">Toy Example 2</h1>
         <table class="two-col">
           <tr>
             <td class="text-center">
-              <pre><code class="language-javascript">window.voicemail = function *voicemail() {
+              <pre><code class="language-javascript">function *voicemail() {
   var messages = loadTheMessages(); // Returns an array of strings. Assume it's synchronous.
   
   var index = 0, response = 0;
@@ -159,12 +199,90 @@ co(function *() {
         <p class="no-spacer no-top-spacer text-center"><small>Protip: You can try this example in your Firefox console.</small></p>
       </section>
       <section class="slide">
-        <h1>How to pair with generators</h1>
+        <table style="margin-top: 20px;" class="full-width two-col text-center dotted">
+          <tbody>
+            <tr>
+              <td>
+                <h2 class="tight">Consumer</h2>
+              </td>
+              <td>
+                <h2 class="tight">Generator</h2>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="tight">You</p>
+                <p class="tight small">Get next encounter</p>
+              </td>
+              <td>
+                <p class="tight">Kaiju Predictor</p>
+                <p class="tight small">Give next encounter</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="tight">You</p>
+                <p class="tight small">Receive message<br/>...<br/>Pass next command</p>
+              </td>
+              <td>
+                <p class="tight">Voicemail</p>
+                <p class="tight small">Receive next command<br/>...<br/>Pass message</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="slide">
+        <table style="margin-top: 20px;" class="full-width two-col text-center dotted">
+          <tbody>
+            <tr>
+              <td>
+                <h2 class="tight">Consumer</h2>
+              </td>
+              <td>
+                <h2 class="tight">Generator</h2>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="tight">Some ACF Generator Handler</p>
+                <p class="tight small">Receive async request<br/>Fire request + ...<br/>Pass async result</p>
+              </td>
+              <td>
+                <p class="tight">Your app logic</p>
+                <p class="tight small">Receive async result<br/>Do logic (sync)<br/>Pass asynchronous request</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="tight">Co's co()</p>
+                <p class="tight small">Receive thunk<br/>Fire thunk + ...<br/>Pass thunk result</p>
+              </td>
+              <td>
+                <p class="tight">Your app logic</p>
+                <p class="tight small">Receive thunk result<br/>Do logic (sync)<br/>Pass thunk</p>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <p class="tight">task.js's spawn()</p>
+                <p class="tight small">Receive promise<br/>Fire promise + ...<br/>Pass promise result</p>
+              </td>
+              <td>
+                <p class="tight">Your app logic</p>
+                <p class="tight small">Receive promise result<br/>Do logic (sync)<br/>Pass promise</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="slide">
+        <h1>Pick and choose an ACF library</h1>
         <ul>
-          <li>co</li>
-          <li>suspend</li>
-          <li>js-csp</li>
-          <li>task.js</li>
+          <li>co <small><a href="https://github.com/visionmedia/co" target="_blank">link</a></small></li>
+          <li>suspend <small><a href="https://github.com/jmar777/suspend" target="_blank">link</a></small></li>
+          <li>js-csp <small><a href="https://github.com/ubolonton/js-csp" target="_blank">link</a></small></li>
+          <li>task.js <small><a href="http://taskjs.org/" target="_blank">link</a></small></li>
           <li>Roll your own</li>
         </ul>
       </section>
@@ -179,9 +297,16 @@ co(function *() {
           <li>Browsers:
             <ul>
               <li>Firefox: available in FF31+</li>
-              <li>Chrome: Something something</li>
+              <li>Chrome: Go to <pre class="inline" style="font-size: 1.8rem;">chrome://flags/#enable-javascript-harmony</pre> (since v35)</li>
             </ul>
           </li>
+          <li>Source Transformation:
+            <ul>
+              <li>Traceur: <a href="https://github.com/google/traceur-compiler" target="_blank">https://github.com/google/traceur-compiler</a></li>
+              <li>Regenerator: <a href="http://facebook.github.io/regenerator/" target="_blank">http://facebook.github.io/regenerator/</a></li>
+            </ul>
+          </li>
+          <li>More information: <a href="http://kangax.github.io/compat-table/es6/#generators_(yield)" target="_blank">http://kangax.github.io/compat-table/es6/#generators_(yield)</a></li>
         </ul>
       </section>
       <section class="slide">
