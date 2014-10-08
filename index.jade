@@ -1,6 +1,6 @@
 doctype html
 
-html
+html(ng-app="MyApp")
   head
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
@@ -35,6 +35,7 @@ html
     .deck-container
       //- Begin slides. Just make elements with a class of slide.
       include slides/title
+      include slides/sync-example
       include slides/target-audience
       include slides/flow-of-a-function
       include slides/flow-of-a-generator
@@ -44,23 +45,6 @@ html
       include slides/further-reading
       //- End slides. 
 
-      //- Begin extension snippets. Add or remove as needed. 
-      //- deck.navigation snippet 
-      //- div(aria-role='navigation')
-        a.deck-prev-link(href='#', title='Previous') ←
-        a.deck-next-link(href='#', title='Next') →
-      //-   deck.status snippet 
-      //- p.deck-status(aria-role='status')
-        span.deck-status-current
-        |  / 
-        span.deck-status-total
-      //-   deck.goto snippet 
-      //- form.goto-form(action='.', method='get')
-        label(for='goto-slide') Go to slide: 
-        input#goto-slide(type='text', name='slidenum', list='goto-datalist')
-        datalist#goto-datalist
-        input(type='submit', value='Go')
-      //-   End extension snippets.
 
     //- Required JS files. 
     script(src='jquery.min.js')
@@ -80,4 +64,8 @@ html
       });
 
     //- Own JS files
+    script(src='scripts/angular.js')
     script(src='scripts/main.js')
+
+    script.
+      angular.module('MyApp', []);

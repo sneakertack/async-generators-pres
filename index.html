@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="MyApp">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -14,6 +14,8 @@
     <link rel="stylesheet" media="screen" href="themes/style/normalize.css">
     <link rel="stylesheet" media="screen" href="themes/style/sandstone.dark.css">
     <link rel="stylesheet" media="screen" href="themes/style/snkt.css">
+    <link rel="stylesheet" media="screen" href="themes/style/codemirror.css">
+    <link rel="stylesheet" media="screen" href="themes/style/monokai.css">
     <link rel="stylesheet" media="screen" href="themes/transition/vertical-slide.css">
     <link rel="stylesheet" media="print" href="core/print.css">
     <script src="modernizr.custom.js"></script>
@@ -26,6 +28,23 @@
         <p style="font-size: 2rem;" class="subtitle no-top-spacer">Oct 2014</p>
         <p style="font-size: 2rem; color: rgba(255,255,255,0.3);" class="subtitle">PgUp / PgDn to navigate</p>
         <p style="font-size: 2rem; color: rgba(255,255,255,0.3);" class="subtitle">Source: <a href="https://github.com/sneakertack/async-generators-pres">github.com/sneakertack/async-generators-pres</a></p>
+      </section>
+      <section class="slide">
+        <table class="full-width">
+          <tr>
+            <td style="width: 50%;">
+              <ui-codemirror>
+                (function () {
+                  var products = loadProductsFromDatabase();
+                  res.send(products);
+                })();
+              </ui-codemirror>
+            </td>
+            <td style="width: 50%;">
+              <p>a something something</p>
+            </td>
+          </tr>
+        </table>
       </section>
       <section class="slide">
         <h1>Who this presentation is for</h1>
@@ -100,6 +119,10 @@
       });
       
     </script>
+    <script src="scripts/codemirror.js"></script>
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/ui-codemirror.js"></script>
     <script src="scripts/main.js"></script>
+    <script>angular.module('MyApp', ['ui.codemirror']);</script>
   </body>
 </html>
