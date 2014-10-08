@@ -287,6 +287,52 @@ for (var i = 0; i < 100; i++) {
         </ul>
       </section>
       <section class="slide">
+        <h1 class="text-center">Improvised Generator Consumer</h1>
+        <table class="two-col full-width">
+          <tr>
+            <td>
+              <pre><code class="language-javascript">function what(genFunc) {
+  var generator = genFunc();
+  var weAreHere = generator.next();
+  bam(weAreHere, generator);
+}
+
+function bam(weAreHere, generator) {
+  if (weAreHere.done === false) {
+    var asyncFunction = weAreHere.value;
+    asyncFunction(function (err, data) {
+      if (err) throw err;
+      weAreHere = generator.next(data);
+      bam(weAreHere, generator);
+    });
+  }
+}
+
+module.exports = what;</code></pre>
+            </td>
+            <td>
+              <pre><code class="language-javascript">var fs = require('fs');
+var what = require('what');
+
+what(function *() {
+  var a = yield thunkReadFile('./cat.txt');
+  console.log(a);
+  var b = yield thunkReadFile('./dog.txt');;
+  console.log(b);
+  var a = yield thunkReadFile('./cat.txt');
+  console.log(a);
+});
+
+function thunkReadFile(path) {
+  return function (callback) {
+    fs.readFile(path, {encoding: 'utf8'}, callback)
+  };
+}</code></pre>
+            </td>
+          </tr>
+        </table>
+      </section>
+      <section class="slide">
         <h1>Is this available? <small style="font-size: 2rem;">(as of 8 Oct 2014)</small></h1>
         <ul>
           <li>Node:
