@@ -20,6 +20,7 @@ html(ng-app="MyApp")
     //- Style theme.
     link(rel='stylesheet', media='screen', href='themes/style/normalize.css')
     link(rel='stylesheet', media='screen', href='themes/style/sandstone.dark.css')
+    link(rel='stylesheet', media='screen', href='themes/style/prism.css')
     link(rel='stylesheet', media='screen', href='themes/style/snkt.css')
 
     //- Transition theme. More available in /themes/transition/ or create your own. 
@@ -36,10 +37,16 @@ html(ng-app="MyApp")
       //- Begin slides. Just make elements with a class of slide.
       include slides/title
       include slides/sync-example
+      include slides/punchline
+      include slides/error-handling
+      include slides/contents
       include slides/target-audience
+      include slides/is-a-lazy-sequence
+      include slides/is-a-pause
       include slides/flow-of-a-function
       include slides/flow-of-a-generator
-      include slides/kaiju-predictor
+      include slides/toy-example-1
+      include slides/toy-example-2
       include slides/libraries-available
       include slides/compatibility
       include slides/further-reading
@@ -64,8 +71,17 @@ html(ng-app="MyApp")
       });
 
     //- Own JS files
+    script(src='scripts/prism.js')
     script(src='scripts/angular.js')
     script(src='scripts/main.js')
 
     script.
       angular.module('MyApp', []);
+
+      // Autoplay hack.
+      $(document).ready(function () {
+        var autoplays = document.getElementsByClassName('autoplay');
+        for (var i = 0; i < autoplays.length; i++) {
+          autoplays[i].play();
+        }
+      })

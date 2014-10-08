@@ -13,9 +13,8 @@
     <link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">
     <link rel="stylesheet" media="screen" href="themes/style/normalize.css">
     <link rel="stylesheet" media="screen" href="themes/style/sandstone.dark.css">
+    <link rel="stylesheet" media="screen" href="themes/style/prism.css">
     <link rel="stylesheet" media="screen" href="themes/style/snkt.css">
-    <link rel="stylesheet" media="screen" href="themes/style/codemirror.css">
-    <link rel="stylesheet" media="screen" href="themes/style/monokai.css">
     <link rel="stylesheet" media="screen" href="themes/transition/vertical-slide.css">
     <link rel="stylesheet" media="print" href="core/print.css">
     <script src="modernizr.custom.js"></script>
@@ -30,21 +29,73 @@
         <p style="font-size: 2rem; color: rgba(255,255,255,0.3);" class="subtitle">Source: <a href="https://github.com/sneakertack/async-generators-pres">github.com/sneakertack/async-generators-pres</a></p>
       </section>
       <section class="slide">
-        <table class="full-width">
+        <h1>Sample Code</h1>
+        <table class="two-col">
           <tr>
-            <td style="width: 50%;">
-              <ui-codemirror>
-                (function () {
-                  var products = loadProductsFromDatabase();
-                  res.send(products);
-                })();
-              </ui-codemirror>
+            <td>
+              <pre><code class="language-javascript">// Called upon receiving a Node/Express HTTP request.
+(function () {
+  var products = loadProductsFromDb();
+  res.send(products);
+})();</code></pre>
             </td>
-            <td style="width: 50%;">
-              <p>a something something</p>
+            <td class="text-center"><img src="imgs/do-you-even-node.png" style="width: 250px;" class="text-center slide"></td>
+          </tr>
+        </table>
+      </section>
+      <section class="slide">
+        <table class="two-col">
+          <tr>
+            <td class="text-center">
+              <h1>Will not work</h1>
+              <pre><code class="language-javascript">// Called upon receiving a Node/Express HTTP request.
+(function () {
+  var products = loadProductsFromDb();
+  res.send(products);
+})();</code></pre>
+            </td>
+            <td class="text-center">
+              <h1>*Will work</h1>
+              <pre><code class="language-javascript">// Called upon receiving a Node/Express HTTP request.
+co(function *() {
+  var products = yield loadProductsFromDb;
+  res.send(products);
+})();
+</code></pre>
             </td>
           </tr>
         </table>
+        <p class="slide text-center">By combining 1) a particular generator consumer with 2) a particular generator function, we get <strong>asynchronous code that looks remarkably like synchronous code.</strong></p>
+      </section>
+      <section class="slide">
+        <h1 class="text-center">Error handling *could work</h1>
+        <pre><code class="language-javascript">co(function *() {
+  try {
+    var products = yield tryHacking('amazon.com'); // Expected to fail
+    res.send(products);
+  } catch (e) {
+    console.log(e.message);
+  }
+})();</code></pre>
+      </section>
+      <section class="slide">
+        <h1>The rest of this presentation</h1>
+        <ul>
+          <li>What is a generator?
+            <ul>
+              <li>Compared to iterables</li>
+              <li>Compared to subroutines and coroutines</li>
+              <li>Toy examples</li>
+            </ul>
+          </li>
+          <li>Conveniently abusing generators for ACF
+            <ul>
+              <li>Overall strategy</li>
+              <li>Using a library like Co</li>
+              <li>Using our own code</li>
+            </ul>
+          </li>
+        </ul>
       </section>
       <section class="slide">
         <h1>Who this presentation is for</h1>
@@ -54,19 +105,58 @@
           <li>You don't know what a generator or coroutine is</li>
         </ul>
       </section>
+      <section class="slide">
+        <h2>A generator is a lazy sequence.</h2>
+      </section>
+      <section class="slide">
+        <h2>A generator is a function with a pause button.</h2>
+        <h2 class="slide">A generator is a function that keeps on giving.</h2>
+      </section>
       <section class="slide"><img src="imgs/function-flow.png"></section>
       <section class="slide"><img src="imgs/generator-flow.png"></section>
       <section class="slide">
-        <table class="full-width">
+        <h1 class="spacer no-top-spacer text-center">Toy Example 1</h1>
+        <table class="two-col">
           <tr>
-            <td style="width: 50%;">
-              <p>A something</p>
+            <td class="text-center">
+              <pre><code class="language-javascript">function *kaijuPredictor() {
+  var interval = 169; // Days between first and second occurence.
+  while (true) {
+    console.log('The next Kaiju will appear in %d days.', interval);
+    yield null;
+    interval /= 2;
+  }
+}</code></pre>
             </td>
-            <td style="width: 50%;">
-              <h1>Another something</h1>
+            <td class="text-center">
+              <video src="imgs/kaiju-predictor.mp4" loop controls class="autoplay"></video>
             </td>
           </tr>
         </table>
+        <p class="no-spacer no-top-spacer text-center"><small>Protip: You can try this example in your Firefox console.</small></p>
+      </section>
+      <section class="slide">
+        <h1 class="spacer no-top-spacer text-center">Toy Example 2</h1>
+        <table class="two-col">
+          <tr>
+            <td class="text-center">
+              <pre><code class="language-javascript">window.voicemail = function *voicemail() {
+  var messages = loadTheMessages(); // Returns an array of strings. Assume it's synchronous.
+  
+  var index = 0, response = 0;
+  while (index < messages.length) {
+    console.log('Press 0 to repeat. Press 1 to go to next message.');
+    response = yield messages[index]; // <-- THE IMPORTANT LINE.
+    if (response === 1) index++;
+  }
+}</code></pre>
+            </td>
+            <td class="text-center">
+              <video src="imgs/voicemail.mp4" loop controls class="autoplay"></video>
+            </td>
+          </tr>
+        </table>
+        <p class="no-spacer no-top-spacer text-center"><small>Protip: You can try this example in your Firefox console.</small></p>
       </section>
       <section class="slide">
         <h1>How to pair with generators</h1>
@@ -83,7 +173,7 @@
         <ul>
           <li>Node:
             <ul>
-              <li>In <strong>v0.11+</strong>, run <pre class="inline">node --harmony-generators</pre> (or <pre class="inline">node --harmony</pre> )</li>
+              <li>In <strong>v0.11+</strong>, run <pre class="inline" style="font-size: 1.8rem;">node --harmony-generators</pre> (or <pre class="inline" style="font-size: 1.8rem;">node --harmony</pre> )</li>
             </ul>
           </li>
           <li>Browsers:
@@ -119,10 +209,19 @@
       });
       
     </script>
-    <script src="scripts/codemirror.js"></script>
+    <script src="scripts/prism.js"></script>
     <script src="scripts/angular.js"></script>
-    <script src="scripts/ui-codemirror.js"></script>
     <script src="scripts/main.js"></script>
-    <script>angular.module('MyApp', ['ui.codemirror']);</script>
+    <script>
+      angular.module('MyApp', []);
+      
+      // Autoplay hack.
+      $(document).ready(function () {
+        var autoplays = document.getElementsByClassName('autoplay');
+        for (var i = 0; i < autoplays.length; i++) {
+          autoplays[i].play();
+        }
+      })
+    </script>
   </body>
 </html>

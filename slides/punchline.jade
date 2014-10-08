@@ -1,0 +1,24 @@
+section.slide
+  table.two-col
+    tr
+      td.text-center
+        h1 Will not work
+        pre
+          code.language-javascript.
+            // Called upon receiving a Node/Express HTTP request.
+            (function () {
+              var products = loadProductsFromDb();
+              res.send(products);
+            })();
+      td.text-center
+        h1 *Will work
+        pre
+          code.language-javascript.
+            // Called upon receiving a Node/Express HTTP request.
+            co(function *() {
+              var products = yield loadProductsFromDb;
+              res.send(products);
+            })();
+
+  p.slide.text-center By combining 1) a particular generator consumer with 2) a particular generator function, we get <strong>asynchronous code that looks remarkably like synchronous code.</strong>
+        

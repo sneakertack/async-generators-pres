@@ -1,12 +1,16 @@
 section.slide
+  h1 Sample Code
   //- Using tables for layout. Kindly deal with it.
-  table.full-width
+  table.two-col
     tr
-      td(style="width: 50%;")
-        code
-          (function () {
-            var products = loadProductsFromDatabase();
-            res.send(products);
-          })();
-      td(style="width: 50%;")
-        p a something something
+      td
+        pre
+          code.language-javascript.
+            // Called upon receiving a Node/Express HTTP request.
+            (function () {
+              var products = loadProductsFromDb();
+              res.send(products);
+            })();
+      td.text-center
+        img.text-center.slide(src="imgs/do-you-even-node.png", style="width: 250px;")
+        

@@ -1,0 +1,13 @@
+section.slide
+  h1.text-center Error handling *could work
+
+  pre
+    code.language-javascript.
+      co(function *() {
+        try {
+          var products = yield tryHacking('amazon.com'); // Expected to fail
+          res.send(products);
+        } catch (e) {
+          console.log(e.message);
+        }
+      })();

@@ -1,0 +1,21 @@
+section.slide
+  h1.spacer.no-top-spacer.text-center Toy Example 2
+  table.two-col
+    tr
+      td.text-center
+        pre
+          code.language-javascript.
+            window.voicemail = function *voicemail() {
+              var messages = loadTheMessages(); // Returns an array of strings. Assume it's synchronous.
+
+              var index = 0, response = 0;
+              while (index < messages.length) {
+                console.log('Press 0 to repeat. Press 1 to go to next message.');
+                response = yield messages[index]; // <-- THE IMPORTANT LINE.
+                if (response === 1) index++;
+              }
+            }
+      td.text-center
+        video.autoplay(src="imgs/voicemail.mp4", loop, controls)
+
+  p.no-spacer.no-top-spacer.text-center: small Protip: You can try this example in your Firefox console.

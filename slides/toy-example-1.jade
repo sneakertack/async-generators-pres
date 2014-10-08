@@ -1,0 +1,19 @@
+section.slide
+  h1.spacer.no-top-spacer.text-center Toy Example 1
+  table.two-col
+    tr
+      td.text-center
+        pre
+          code.language-javascript.
+            function *kaijuPredictor() {
+              var interval = 169; // Days between first and second occurence.
+              while (true) {
+                console.log('The next Kaiju will appear in %d days.', interval);
+                yield null;
+                interval /= 2;
+              }
+            }
+      td.text-center
+        video.autoplay(src="imgs/kaiju-predictor.mp4", loop, controls)
+
+  p.no-spacer.no-top-spacer.text-center: small Protip: You can try this example in your Firefox console.
